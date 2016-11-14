@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'IndoorwayKit_Example' do
+  pod 'IndoorwayKit', :path => '../'
+
+  target 'IndoorwayKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
