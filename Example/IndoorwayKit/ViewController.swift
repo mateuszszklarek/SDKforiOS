@@ -7,18 +7,116 @@
 //
 
 import UIKit
+import IndoorwayKit
 
 class ViewController: UIViewController {
+	
+	// MARK: Indoorway map view
+	
+	private var mapView: IndoorwayMapView!
+	
+	private func insertMapView() {
+		
+		// Add map view
+		view.addSubview(mapView)
+		
+		// Add constraints
+		layoutMapView()
+	}
+	
+	// MARK: Indoorway location manager
+	
+	var locationManager: IndoorwayLocationManager!
+	
+	// MARK: View controller life cycle
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		// Create and instert map view
+		mapView = IndoorwayMapView()
+		mapView.delegate = self
+		insertMapView()
+	
+		// Create location manager
+		locationManager = IndoorwayLocationManager()
+		locationManager.delegate = self
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		// Start location updates
+		locationManager.startLocationUpdates()
+		
+		// Map description
+		let mapDescription = IndoorwayMapDescription(
+			buildingUUID: <#T##NSString#>,
+			mapUUID: <#T##NSString#>
+		)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+		// Loading map
+		mapView.loadMap(with: mapDescription) { [weak self] (success) in
+			guard let `self` = self else { return }
+			self.mapView.showsUserLocation = true
+		}
+	}
+	
+	private func layoutMapView() {
+		mapView.translatesAutoresizingMaskIntoConstraints = false
+		
+		func createConstraint(withAttribute attribute: NSLayoutAttribute) -> NSLayoutConstraint {
+			 return NSLayoutConstraint(
+				item: mapView,
+				attribute: attribute,
+				relatedBy: .equal,
+				toItem: view,
+				attribute: attribute,
+				multiplier: 1.0,
+				constant: 0
+			)
+		}
+		
+		view.addConstraints([.left, .right, .top, .bottom].map {
+			createConstraint(withAttribute: $0)
+		})
+	}
 }
 
+extension ViewController: IndoorwayLocationManagerDelegate {
+	func indoorwayLocationManager(_ manager: IndoorwayLocationManager, didFailWithError error: Error) {
+		print("Location manager did fail with error \(error.localizedDescription)")
+	}
+	func indoorwayLocationManager(_ manager: IndoorwayLocationManager, didUpdateLocation location: IndoorwayLocation) {
+		print("Location manager did update location: (latitude:\(location.latitude), longitude:\(location.longitude))")
+	}
+	func indoorwayLocationManager(_ manager: IndoorwayLocationManager, didUpdateHeading heading: IndoorwayHeading) {
+		print("Loation manager did update heading: \(heading)")
+	}
+}
+
+extension ViewController: IndoorwayMapViewDelegate {
+	
+	// Map loading
+	func mapViewDidFinishLoadingMap(_ mapView: IndoorwayMapView) {
+		print("Map view did finish loading")
+	}
+	func mapViewDidFailLoadingMap(_ mapView: IndoorwayMapView, withError error: Error) {
+		print("Map view did fail loading map with error: \(error.localizedDescription)")
+	}
+	
+	// Location
+	func mapView(_ mapView: IndoorwayMapView, didUpdate userLocation: IndoorwayUserLocation) {
+		print("Map view did update user location: (latitude:\(userLocation.coordinate.latitude), longitude:\(userLocation.coordinate.longitude)")
+	}
+	
+	// Actions
+	func mapView(_ mapView: IndoorwayMapView, didSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) {
+		print("User did select indoor object with identifier: \(indoorObjectInfo.objectId)")
+	}
+	func mapView(_ mapView: IndoorwayMapView, didTapLocation location: IndoorwayLatLon) {
+		print("User did tap location: \(location.latitude) \(location.longitude)")
+	}
+	
+	// And many other methods
+}

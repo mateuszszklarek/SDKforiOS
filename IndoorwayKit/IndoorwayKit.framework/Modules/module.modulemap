@@ -1,0 +1,10 @@
+framework module IndoorwayKit {
+  umbrella header "IndoorwayKit.h"
+
+  export *
+  module * { export * }
+}
+
+module IndoorwayKit.Swift {
+    header "IndoorwayKit-Swift.h"
+}
