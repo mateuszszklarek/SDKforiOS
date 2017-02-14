@@ -5,15 +5,27 @@
 Indoorway lets you find your way indoors. Check it out!
 
 - [Features](#features)
-- [Requirements](#reqiurements)
-- [Installation](#instalation)
+- [Requirements](#requirements)
+- [Installation](#installation)
 - [Usage](#usage)
-	- **Configuration -** [Initial confguration](#initial-configuration), [Visitor configuration](#visitor-configuration)
-	- **Maps -** [Map displaying](#map-displaying), [Custom map rendering](#custom-map-rendering), [Custom map annotations](#custom-map-annotations), [Indoor objects selection](#indoor-objects-selection), [Tap detection](#tap-detection), [Navigation](#navigation)
-	- **Navigation -** [Navigation](#navigation)
-	- **Location -** [Indoor location manager](#indoor-location-manager). [Location ranging](#location-ranging)
-	- **Model -** [Buildings informations manager](#buildings-informations-manager), [Points of interest types manager](#points-of-interest-types-manager), [Indoor objects](#indoor-objects)
-- [Documentation](#documentation)
+	- **Configuration** 
+		- [Initial configuration](#initial-configuration)
+		- [Visitor configuration](#visitor-configuration)
+	- **Maps**
+		- [Map displaying](#map-displaying)
+		- [Custom map rendering](#custom-map-rendering)
+		- [Custom map annotations](#custom-map-annotations)
+		- [Indoor objects selection](#indoor-objects-selection)
+		- [Tap detection](#tap-detection)
+		- [Indoor objects list](#indoor-objects-list)
+		- [Navigation](#navigation)
+	- **Location**
+		- [Indoor location manager](#indoor-location-manager)
+		- [Location ranging](#location-ranging) 
+	- **Model**
+		- [Buildings information manager](#buildings-information-manager)
+		- [Points of interest types manager](#points-of-interest-types-manager)
+		- [Events tracking](#events-tracking)
 - [Submission](#submission)
 - [Support](#support)
 - [Licence](#licence)
@@ -26,22 +38,21 @@ Indoorway lets you find your way indoors. Check it out!
 	- [x] Customizable colors, size and fonts
 	- [x] Possibility to add view annotations
 	- [x] MapKit like interface
-- [x] Documentation
 
 ## Requirements
 
 IndoorwayKit framework is implemented in Swift and requires system version:
 
-- iOS 10.1+
+- iOS 10.0+
 
 If you are using Swift:
 
-- Xcode 8.1+	
+- Xcode 8.1+
 - Swift 3.0.1+
 
 If you are using Objective-C:
 
-- Xcode 7.0+
+- Xcode 7.3.1+
 
 Location module requires Bluetoooth turned on to obtain location data.
 
@@ -49,7 +60,7 @@ Location module requires Bluetoooth turned on to obtain location data.
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. To build IndoorwayKit, CocoaPods in version 1.0.0+ is required. You can easily install it from Ruby gem using following bash command:
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. To build IndoorwayKit, CocoaPods in version 1.0.0+ is required. You can easily install it from Ruby gem by using the following bash command:
 
 ```bash
 $ gem install cocoapods
@@ -61,16 +72,15 @@ You can integrate IndoorwayKit to your Xcode project using CocoaPods `Podfile` l
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '10.1'
+platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-	pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
-    pod 'IndoorwayKit', '~> 1.0.0'
+    pod 'IndoorwayKit', '~> 1.1.0'
 end
 ```
 
-And then, run bash command in your project folder:
+And then, run bash command in your project's folder:
 
 ```bash
 $ pod install
@@ -78,9 +88,9 @@ $ pod install
 
 ## Usage
 
-### Initial confguration
+### Initial configuration
 
-Before any use of the framework you must configure it using your API key. The best place to apply configuration is your Application Delegete `application(_:didFinishLaunchingWithOptions:)` method:
+Before any use of the framework you must configure it by using your API key. The best place to apply configuration is your Application Delegete `application(_:didFinishLaunchingWithOptions:)` method:
 
 ```swift
 import IndoorwayKit
@@ -95,18 +105,18 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ### Visitor configuration
 
-Current user registration is optional, but required to aggregate locations, and gather informations for statistical purpouses. 
+Current user registration is optional. It is only required to aggregate locations, send tracking events and gather information for statistical purposes. 
 
 ```swift
 IndoorwayConfiguration.setupVisitor(withName: "John Appleseed", age: 30, sex: .male, group: "Engineers")
 ```
 
-If user name or group is not applicable pass empty strings.
-If age of the user is also not applicable pass negative value.
+If user name or group is not applicable, pass empty strings.
+If age of the user is also not applicable, pass negative value.
 
 ### Map displaying
 
-To display map, use `IndoorwayMapView` object and load map using it's building UUID and map UUID:
+To display map, use `IndoorwayMapView` object and load map by using it's building UUID and map UUID:
 
 ```swift
 import IndoorwayKit
@@ -123,7 +133,7 @@ mapView.loadMap(with: description) { [weak self] (completed) in
 }
 ```
 
-It is recomended to implement a map view's delegate protocol and set it as delegate in the map view to receive callbacks, like information that map did finish launching, which can be used to retry if it fails:
+It is recommended to implement a map view's delegate protocol and set it as delegate in the map view to receive callbacks, like information that map has finished launching, which can be used to retry if it fails:
 
 ```swift
 mapView.delegate = self
@@ -143,11 +153,11 @@ extension ViewController: IndoorwayMapViewDelegate {
 }
 ```
 
-For more informations check the rest of the methods in protocol `IndoorwayMapViewDelegate`.
+For more information check other methods in protocol `IndoorwayMapViewDelegate`.
 
 ### Custom map rendering
 
-To customize map view's displaying attributes simply implement protocol `IndoorwayMapRendererConfiguration`:
+To customize displaying attributes of map view simply implement protocol `IndoorwayMapRendererConfiguration`:
 
 ```swift
 import IndoorwayKit
@@ -261,24 +271,27 @@ class ExampleAnnotation: NSObject, IndoorwayAnnotation {
 
 	init(coordinate: IndoorwayLatLon) {
 		self.coordinate = coordinate
+		super.init()
 	}
 }
 ```
 
-and add annotation described like that to map view:
+and add the following annotation to the map view:
 
 ```swift
-let annotation = ExampleAnnotation(coordinate: IndoorwayLatLon(latitude: latitude, longitude: longitude))
+let annotation = ExampleAnnotation(
+	coordinate: IndoorwayLatLon(latitude: latitude, longitude: longitude)
+)
 mapView.addAnnotation(annotation)
 ```
 
-Annotations can be removed like in following example:
+Annotations can be removed as shown in the following example:
 
 ```swift
 mapView.removeAnnotation(annotation)
 ```
 
-Annotations has a default view, but you can customize it by implementing `IndoorwayMapViewDelegate` method like:
+Annotations have a default view, but you can customize them by implementing `IndoorwayMapViewDelegate` method as presented below:
 
 ```swift
 enum ExampleMapViewIdentifiers: String {
@@ -287,11 +300,17 @@ enum ExampleMapViewIdentifiers: String {
 }
 
 func mapView(_ mapView: IndoorwayMapView, viewForAnnotation annotation: IndoorwayAnnotation) -> IndoorwayAnnotationView? {
-	var view: IndoorwayAnnotationView = nil
+	var view: IndoorwayAnnotationView? = nil
+
+	// Example annotation
 	if let annotation = annotation as? ExampleAnnotation {
+		// Reused annotation view
 		if let reusedView = dequeueReusableAnnotationView(withIdentifier: ExampleMapViewIdentifiers.exampleAnnotation.rawValue) {
+			reusedView.annotation = annotation
 			view = reusedView
-		} else {
+		}
+		// New annotation view
+		else {
 			let newView = IndoorwayAnnotationView(annotation: annotation, reuseIdentifier: ExampleMapViewIdentifiers.exampleAnnotation.rawValue)
 			newView.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
 			newView.backgroundColor = UIColor.red
@@ -299,10 +318,16 @@ func mapView(_ mapView: IndoorwayMapView, viewForAnnotation annotation: Indoorwa
 			view = newView
 		}
 	}
+
+	// User location view
 	else if let annotation = annotation as? IndoorwayUserLocation {
+		// Reused annotation view
 		if let reusedView = dequeueReusableAnnotationView(withIdentifier: ExampleMapViewIdentifiers.userLocationAnnotation.rawValue) {
+			reusedView.annotation = annotation
 			view = reusedView
-		} else {
+		}
+		// New annotation view
+		else {
 			let newView = IndoorwayAnnotationView(annotation: annotation, reuseIdentifier: ExampleMapViewIdentifiers.userLocationAnnotation.rawValue)
 			newView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
 			newView.backgroundColor = UIColor.blue
@@ -314,7 +339,7 @@ func mapView(_ mapView: IndoorwayMapView, viewForAnnotation annotation: Indoorwa
 }
 ```
 
-`IndoorwayMapViewDelegate` has also methods that will be called when user did select or deselect annotation view:
+`IndoorwayMapViewDelegate` has also methods that will be called when user did selects or deselects annotation view:
 
 ```swift
 func mapView(_ mapView: IndoorwayMapView, didSelectAnnotationView view: IndoorwayAnnotationView) {
@@ -327,7 +352,7 @@ func mapView(_ mapView: IndoorwayMapView, didDeselectAnnotationView view: Indoor
 
 ### Indoor objects selection
 
-When user selects or deselects indoor objects following methods from the map view's delegate are called:
+When user selects or deselects indoor objects, the following methods from the map view's delegate are called:
 
 ```swift
 func mapView(_ mapView: IndoorwayMapView, didSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) {
@@ -361,12 +386,30 @@ mapView.selectObject(withIndoorwayObject: objectInfo)
 
 ### Tap detection
 
-When user tap's location is not associated with annotation or indoor object following method from the map view's delegate will be called:
+When user tap's location is not associated with annotation or indoor object, the following method from the map view's delegate will be called:
 
 ```swift
 func mapView(_ mapView: IndoorwayMapView, didTapLocation location: IndoorwayLatLon) {
 	print("User did tap location: \(location.latitude) \(location.longitude)")
 }
+```
+
+### Indoor objects list
+
+You can access the list of indoor objects on the loaded map using `indoorObjects` property of `IndoorwayMapView` object:
+
+```swift
+mapView.indoorObjects
+```
+
+To search for indoor objects that contain specific tag:
+
+```swift
+let tag = "Sample tag"
+let objectsWithTag = mapView.indoorObjects
+	.filter {
+		$0.objectTags.contains(tag)
+	}
 ```
 
 ### Navigation
@@ -385,7 +428,7 @@ mapView.navigate(to: location)
 mapView.navigate(form: startLocation, to: destinationLocation)
 ```
 
-- navigate from current user's location to specific indoor object eith identifier
+- navigate from current user's location to specific indoor object with identifier
 
 ```swift
 mapView.navigate(toObjectWithId: "<destination indoor object identifier>")
@@ -415,9 +458,15 @@ To stop displaying navigation call:
 mapView.stopNavigation()
 ```
 
-### Indoor location manager
+#### Path points
 
-> To succesfully obtain location data previously load specific map in `IndoorwayMapView`
+You can access the list of navigation path points on the loaded map using `pathPoints` property of `IndoorwayMapView` object:
+
+```swift
+mapView.pathPoints
+```
+
+### Indoor location manager
 
 Indoor location manager is a source of information of user's location. To create manager and set it delegate: 
 
@@ -454,41 +503,100 @@ locationManager.stopLocationUpdates()
 
 ### Location ranging
 
-Framework allows you to set special range using location and radius to get callbacks when user enters or leaves specified area. For acomplish this functionality create location ranger and set enter and leave closure:
+The framework allows you to define custom ranges. When user enters or exits defined region, `IndoorwayLocationManagerDelegate` provides callbacks for these actions:
 
 ```swift
-let locationRanger = IndoorwayLocationRanger(rangedLocation: location, rangingDistance: distance)
-
-locationRanger.enterClosure {
-	print("User entered range")
+func locationManager(_ manager: IndoorwayLocationManager, didEnter region: IndoorwayRegion) {
+	let enterData: IndoorwayRegionData? = region.notifications
+		.flatMap {
+			if case .enter(let data) = $0 { return data }
+			else { return nil }
+		}.first
+	guard let data = enterData else { return }
+	print("Entered: \(data.title) with description: \(data.description)")
 }
 
-locationRanger.leaveClosure {
-	print("User leave range")
+func locationManager(_ manager: IndoorwayLocationManager, didExit region: IndoorwayRegion) {
+	let exitData: IndoorwayRegionData? = region.notifications
+		.flatMap {
+			if case .exit(let data) = $0 { return data }
+			else { return nil }
+		}.first
+	guard let data = exitData else { return }
+	print("Exit: \(data.title) with description: \(data.description)")
 }
 ```
 
-To start ranging call:
+You can access notification data in region model `region.notifications`. It contains enter or exit notification with associated data. Example of obtaining enter notification data: 
 
 ```swift
-locationRanger.startRanging()
+let enterData: IndoorwayRegionData? = region.notifications
+	.flatMap {
+		if case .enter(let data) = $0 { return data }
+		else { return nil }
+	}.first
+```
+
+#### Remote defined ranges
+
+You can specify remotely ranges to be monitored in the Indooway Dashboard. It would appear in the application automatically. You just need to handle callbacks from the delegate.
+
+#### Locally defined ranges
+
+To create range in code create an object that inherits from `IndoorwayRegion`. The framework provides a predefined circular region `IndoorwayCircularRegion` and notifications for two types of actions. As an example you can create custom range that fits your implementation needs.
+
+First create notification that holds all data that you will receive when user enters specific region:
+
+```swift
+let enter = IndoorwayRegionNotification.exit(
+	IndoorwayRegionData(
+		title: "Hey!",
+		description: "Look at right!",
+		timeout: 1.0,
+		imageURL: URL(string: "https://look.at/me"),
+		actionURL: URL(string: "https://open.me/link")
+	)
+)
+```
+
+Next create, for example, a circular region specifying unique identifier, center location and radius in meters:
+
+```swift
+let circularRegion = IndoorwayCircularRegion(
+	identifier: "Example unique identifier",
+	center: IndoorwayLocation(
+		latitude: 10.0000, // Example latitude
+		longitude: 20.000, // Example longitude
+		uncertainty: nil,
+		buildingUUID: "The building UUID",	// Example building UUID
+		mapUUID: "The map UUID"				// Example map UUID
+	),
+	radius: 20.000, // Radius in meters
+	notifications: [enter]
+)
+```
+
+Next pass it to the `IndoorwayLocationManager` instance for start ranging method: 
+
+```swift
+locationRanger.startRanging(circularRegion)
 ```
 
 To stop ranging call:
 
 ```swift
-locationRanger.stopRanging()
+locationRanger.stopRanging(circularRegion)
 ```
 
-### Buildings informations manager
+### Buildings information manager
 
-To fetch building base informations with associated maps use `IndoorwayBuildingsManager` class. First create building manager object:
+To fetch building base information with associated maps use `IndoorwayBuildingsManager` class. First create building manager object:
 
 ```swift
 let buildingManager = IndoorwayBuildingsManager()
 ```
 
-and call following method:
+and call the following method:
 
 ```swift
 buildingManager.getBuildings { (buildings, error) in
@@ -509,7 +617,7 @@ To fetch points of interest types use `IndoorwayPointsOfInterestTypesManager` cl
 let poiTypesManager = IndoorwayPointsOfInterestTypesManager()
 ```
 
-and call following method:
+and call the following method:
 
 ```swift
 poiTypeManager.getPointsOfInterestTypes { (poiTypes, error) in
@@ -522,34 +630,36 @@ poiTypeManager.getPointsOfInterestTypes { (poiTypes, error) in
 }
 ```
 
-### Indoor objects
+### Events tracking
 
-You can list indoor objects on the loaded map using `indoorObjects` property of `IndoorwayMapView` object:
+The framework provides event tracking tool. You can access it from the shared instance of `IndoorwayTrackingManager`. First create `IndoorwayEvent`instance as an event that you want to track and pass it as an argument to `track(_:)` method:
 
 ```swift
-mapView.indoorObjects
+IndoorwayTrackingManager.shared.track(
+	IndoorwayEvent(
+		uuid: "Example unique identifier",
+		category: "Example category",
+		label: "Example label",
+		interaction: "Example interaction"
+	)
+)
 ```
 
-## Documentation
-
-Full documentation will be available soon.  
-
-> If you need more informations contact us at contact@indoorway.com.
+For example, to track remote defined ranging events as a `uuid`, pass an range `identifier`.
 
 ## Submission
 
-This framework uses custom cryptography. When submmiting your app to the AppStore that uses the framework you must answer each of the export compliance questions:
+This framework uses custom cryptography. When submitting your app to the AppStore that uses the framework, you must answer each of the export compliance questions:
 - *Is your app designed to use cryptography or does it contain or incorporate cryptography?* - **YES**
 - *Does your app meet any of the following? [...]*  - **YES**
 - *Does your app implement any encryption algorithms that are proprietary or yet-to-be-accepted as standards by international standard bodies (IEEE, IETF, ITU, and so on)?* - **Up to your implementation**
 - *Does your app implement any standard encryption algorithms instead of, or in addition to, using or accessing the encryption in Apple’s iOS or macOS?* - **YES**
 - *Are you releasing your app in France?* - **Up to your distribution**
 
-
 ## Support
 
-If you want to contact us please send email at contact@indoorway.com. Any suggestions or reports of technical issues are welcome!
+Any suggestions or reports of technical issues are welcome! Contact us via email contact@indoorway.com.
 
-## License
+## Licence
 
 IndoorwayKit is available under the custom license. See the LICENSE file for more info.

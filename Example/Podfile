@@ -2,5 +2,4 @@ use_frameworks!
 
 target 'IndoorwayKit_Example' do
   pod 'IndoorwayKit', :path => '../'
-  pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
 end

@@ -154,8 +154,8 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit19IndoorwayAnnotation_")
 
 /**
   Class responsible for presenting annotations in a map view.
-  The map view asks it’s delegate to provide corresponding annotaion view.
-  Annotation views can be recycled ad reused and this process is maitained by map view.
+  The map view asks its delegate to provide corresponding annotation view.
+  Annotation views can be recycled ad reused. This process is maintained by map view.
 */
 SWIFT_CLASS("_TtC12IndoorwayKit23IndoorwayAnnotationView")
 @interface IndoorwayAnnotationView : UIView
@@ -178,7 +178,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit23IndoorwayAnnotationView")
 
 
   returns:
-  The initiatialized annotation view
+  The initialized annotation view
 */
 - (nonnull instancetype)initWithAnnotation:(id <IndoorwayAnnotation> _Nullable)annotation reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
@@ -223,8 +223,13 @@ SWIFT_CLASS("_TtC12IndoorwayKit17IndoorwayBuilding")
 /**
   The list of maps associated with the building
 */
-@property (nonatomic, readonly, copy) NSArray<IndoorwayMap *> * _Nonnull maps;
+@property (nonatomic, readonly, copy) NSArray<IndoorwayMap *> * _Nullable maps;
+- (nonnull instancetype)initWithUuid:(NSString * _Nonnull)uuid name:(NSString * _Nonnull)name description:(NSString * _Nullable)description street:(NSString * _Nullable)street city:(NSString * _Nullable)city mapsInfo:(NSArray<IndoorwayMap *> * _Nullable)mapsInfo OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+@interface IndoorwayBuilding (SWIFT_EXTENSION(IndoorwayKit))
 @end
 
 
@@ -233,7 +238,14 @@ SWIFT_CLASS("_TtC12IndoorwayKit17IndoorwayBuilding")
 */
 SWIFT_CLASS("_TtC12IndoorwayKit29IndoorwayCircleAnnotationView")
 @interface IndoorwayCircleAnnotationView : IndoorwayAnnotationView
-- (nonnull instancetype)initWithAnnotation:(id <IndoorwayAnnotation> _Nullable)annotation reuseIdentifier:(NSString * _Nullable)reuseIdentifier SWIFT_UNAVAILABLE;
+/**
+  Initializes default circle annotation view
+  \param annotation The view annotation
+
+  \param reuseIdentifier The reuse identifier
+
+*/
+- (nonnull instancetype)initWithAnnotation:(id <IndoorwayAnnotation> _Nullable)annotation reuseIdentifier:(NSString * _Nullable)reuseIdentifier;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -253,8 +265,8 @@ SWIFT_CLASS("_TtC12IndoorwayKit22IndoorwayConfiguration")
 */
 + (void)configureWithApiKey:(NSString * _Nonnull)apiKey;
 /**
-  Method that registers the Indoorway visitor informations.
-  Should be called every time that app launches and before obtaing first localization.
+  Method that registers the Indoorway visitor information.
+  Should be called every time the app launches and before obtaining first localization.
   \param name The name of the visitor. Pass empty string if not applicable
 
   \param age The age of the visitor. Pass negative value if not applicable
@@ -275,9 +287,10 @@ typedef SWIFT_ENUM(NSInteger, IndoorwayErrorCode) {
   IndoorwayErrorCodeBluetoothNotAvailable = 77500,
   IndoorwayErrorCodeBuildingsManager = 77700,
   IndoorwayErrorCodeLogotypeManager = 77701,
-  IndoorwayErrorCodeRadiomapManager = 77702,
+  IndoorwayErrorCodeRadiomap = 77702,
   IndoorwayErrorCodeMapManager = 77703,
   IndoorwayErrorCodePointsOfInterestTypesManager = 77704,
+  IndoorwayErrorCodeLocationRangingManager = 77705,
   IndoorwayErrorCodeUserNotAuthorized = 77800,
 };
 
@@ -303,7 +316,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit15IndoorwayLatLon")
 
 
   returns:
-  A initialized location object
+  An initialized location object
 */
 - (nonnull instancetype)initWithLatitude:(double)latitude longitude:(double)longitude OBJC_DESIGNATED_INITIALIZER;
 /**
@@ -360,6 +373,10 @@ SWIFT_CLASS("_TtC12IndoorwayKit17IndoorwayLocation")
 SWIFT_CLASS("_TtC12IndoorwayKit17IndoorwayLogotype")
 @interface IndoorwayLogotype : NSObject
 /**
+  The UUID of the logotype
+*/
+@property (nonatomic, readonly, copy) NSString * _Nonnull UUID;
+/**
   The URL of the original image
 */
 @property (nonatomic, readonly, copy) NSURL * _Nonnull originalURL;
@@ -371,7 +388,12 @@ SWIFT_CLASS("_TtC12IndoorwayKit17IndoorwayLogotype")
   The name of the logotype
 */
 @property (nonatomic, readonly, copy) NSString * _Nullable name;
+- (nonnull instancetype)initWithUUID:(NSString * _Nonnull)UUID originalURL:(NSURL * _Nonnull)originalURL thumbURL:(NSURL * _Nonnull)thumbURL name:(NSString * _Nullable)name;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+@interface IndoorwayLogotype (SWIFT_EXTENSION(IndoorwayKit))
 @end
 
 
@@ -388,6 +410,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit12IndoorwayMap")
   The name of the map
 */
 @property (nonatomic, readonly, copy) NSString * _Nonnull name;
+- (nonnull instancetype)initWithName:(NSString * _Nonnull)name uuid:(NSString * _Nonnull)uuid;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
@@ -398,7 +421,13 @@ SWIFT_CLASS("_TtC12IndoorwayKit12IndoorwayMap")
 */
 SWIFT_CLASS("_TtC12IndoorwayKit23IndoorwayMapDescription")
 @interface IndoorwayMapDescription : NSObject
+/**
+  The building UUID
+*/
 @property (nonatomic, readonly, copy) NSString * _Nonnull buildingUUID;
+/**
+  The map UUID
+*/
 @property (nonatomic, readonly, copy) NSString * _Nonnull mapUUID;
 /**
   Initializer
@@ -539,7 +568,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayMapView")
 /**
   Method lazily loads and displays map associated with description.
   After first load map will be cached.
-  \param description The description of  map to be displayed
+  \param description The description of map to be displayed
 
   \param completion The completion block with a Boolean that indicates that map is properly loaded
 
@@ -600,7 +629,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayMapView")
 - (void)selectObjectWithIndoorwayObject:(IndoorwayObjectInfo * _Nonnull)object;
 /**
   Method selects the Indoorway object with matching identifier
-  \param objectId The Indoorway object idenfifier associated with object to select
+  \param objectId The Indoorway object identifier associated with object to select
 
 */
 - (void)selectObjectWithIndoorwayObjectId:(NSString * _Nonnull)objectId;
@@ -641,7 +670,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayMapView")
 - (void)addAnnotation:(id <IndoorwayAnnotation> _Nonnull)annotation;
 /**
   Method adds array of annotations to the map view
-  \param annotations The array of annotations to be addes to the map view
+  \param annotations The array of annotations to be added to the map view
 
 */
 - (void)addAnnotations:(NSArray<id <IndoorwayAnnotation>> * _Nonnull)annotations;
@@ -669,12 +698,12 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayMapView")
 */
 - (IndoorwayAnnotationView * _Nullable)viewForAnnotation:(id <IndoorwayAnnotation> _Nonnull)annotation;
 /**
-  Method reurns reusable annotation view matching the identifier
+  Method returns reusable annotation view matching the identifier
   \param identifier The string identifying the annotation view
 
 
   returns:
-  An annotation view associated with identfier, or \code
+  An annotation view associated with identifier, or \code
   nil
   \endcode if no such object exists for reuse
 */
@@ -714,7 +743,7 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit24IndoorwayMapViewDelegate_")
   Method called when map did fail loading map
   \param mapView The map view that did fail loading map
 
-  \param error Error that occured
+  \param error Error that occurred
 
 */
 - (void)mapViewDidFailLoadingMap:(IndoorwayMapView * _Nonnull)mapView withError:(NSError * _Nonnull)error;
@@ -738,7 +767,7 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit24IndoorwayMapViewDelegate_")
   Method tells the delegate that an attempt to locate the user’s position failed.
   \param mapView The map view which determines user location
 
-  \param error The error containing a reason that determining user location’s failed
+  \param error The error containing a reason that determining user location failed
 
 */
 - (void)mapView:(IndoorwayMapView * _Nonnull)mapView didFailToLocateUserWithError:(NSError * _Nonnull)error;
@@ -750,7 +779,7 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit24IndoorwayMapViewDelegate_")
 
 
   returns:
-  returns true if objet should be selected
+  returns true if object should be selected
 */
 - (BOOL)mapView:(IndoorwayMapView * _Nonnull)mapView shouldSelectIndoorObject:(IndoorwayObjectInfo * _Nonnull)indoorObjectInfo;
 /**
@@ -772,12 +801,12 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit24IndoorwayMapViewDelegate_")
 /**
   Method returns the view associated with the specified annotation object
   Discussion:
-  Rather than creating new view each time the method is called it should call \code
+  Rather than creating new view each time the method is called, it should call \code
   dequeueReusableAnnotationViewWithIdentifier(_ identifier:)
   \endcode on the \code
   IndoorwayMapView
   \endcode instance to obtain dequeued view.
-  If it don’t exist it should create new one. After both of ways view should be configured to reflect the annotation properties before returning.
+  If it doesn’t exist, it should create a new one. After both of ways view should be configured to reflect the annotation properties before returning.
   If the object in the annotation parameter is an instance of the IndoorwayUserLocation class, you can provide a custom view to display the user’s location.
   To display the user’s location using the standard system view, return nil.
   If you do not implement this method, or if you return nil from your implementation for annotations other than the user location annotation, the map view uses a standard circle annotation view.
@@ -843,61 +872,59 @@ SWIFT_CLASS("_TtC12IndoorwayKit19IndoorwayObjectInfo")
 
 /**
   Indoorway object type
-  <ul>
-    <li>
-      Room
-    </li>
-    <li>
-      Toilet
-    </li>
-    <li>
-      Cloackroom
-    </li>
-    <li>
-      Information
-    </li>
-    <li>
-      Inaccessible
-    </li>
-    <li>
-      Elevator
-    </li>
-    <li>
-      Stairs
-    </li>
-    <li>
-      Point
-    </li>
-    <li>
-      Atm
-    </li>
-    <li>
-      Entrance
-    </li>
-    <li>
-      VendingMachine
-    </li>
-    <li>
-      Path
-    </li>
-    <li>
-      Unknown
-    </li>
-  </ul>
 */
 typedef SWIFT_ENUM(NSInteger, IndoorwayObjectType) {
+/**
+  Room
+*/
   IndoorwayObjectTypeRoom = 0,
+/**
+  Toilet
+*/
   IndoorwayObjectTypeToilet = 1,
+/**
+  Cloakroom
+*/
   IndoorwayObjectTypeCloakroom = 2,
+/**
+  Information
+*/
   IndoorwayObjectTypeInformation = 3,
+/**
+  Inaccessible
+*/
   IndoorwayObjectTypeInaccessible = 4,
+/**
+  Elevator
+*/
   IndoorwayObjectTypeElevator = 5,
+/**
+  Stairs
+*/
   IndoorwayObjectTypeStairs = 6,
+/**
+  Point
+*/
   IndoorwayObjectTypePoint = 7,
+/**
+  Atm
+*/
   IndoorwayObjectTypeAtm = 8,
+/**
+  Entrance
+*/
   IndoorwayObjectTypeEntrance = 9,
+/**
+  VendingMachine
+*/
   IndoorwayObjectTypeVendingMachine = 10,
+/**
+  Path
+*/
   IndoorwayObjectTypePath = 11,
+/**
+  Unknown
+*/
   IndoorwayObjectTypeUnknown = 12,
 };
 
@@ -905,8 +932,8 @@ typedef SWIFT_ENUM(NSInteger, IndoorwayObjectType) {
 /**
   Indoorway point of interest type
 */
-SWIFT_CLASS("_TtC12IndoorwayKit28IndoorwayPointOfInterestType")
-@interface IndoorwayPointOfInterestType : NSObject
+SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayPOIType")
+@interface IndoorwayPOIType : NSObject
 /**
   The UUID of the point of interest
 */
@@ -919,7 +946,12 @@ SWIFT_CLASS("_TtC12IndoorwayKit28IndoorwayPointOfInterestType")
   The logotype of the point of interest
 */
 @property (nonatomic, readonly, strong) IndoorwayLogotype * _Nullable logotype;
+- (nonnull instancetype)initWithUuid:(NSString * _Nonnull)uuid name:(NSString * _Nonnull)name logotype:(IndoorwayLogotype * _Nullable)logotype OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+@interface IndoorwayPOIType (SWIFT_EXTENSION(IndoorwayKit))
 @end
 
 
@@ -945,21 +977,19 @@ SWIFT_CLASS("_TtC12IndoorwayKit21IndoorwayUserLocation")
 
 /**
   Indoorway visitor sex
-  <ul>
-    <li>
-      Undefined
-    </li>
-    <li>
-      Male
-    </li>
-    <li>
-      Female
-    </li>
-  </ul>
 */
 typedef SWIFT_ENUM(NSInteger, IndoorwayVisitorSex) {
+/**
+  Undefined
+*/
   IndoorwayVisitorSexUndefined = 0,
+/**
+  Male
+*/
   IndoorwayVisitorSexMale = 1,
+/**
+  Female
+*/
   IndoorwayVisitorSexFemale = 2,
 };
 

@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  IndoorwayKit
 //
-//  Created by Robert Sobolewski on 11/14/2016.
-//  Copyright (c) 2016 Robert Sobolewski. All rights reserved.
+//  Created by Indoorway on 11/14/2016.
+//  Copyright (c) 2016 Indoorway. All rights reserved.
 //
 
 import UIKit
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
 			buildingUUID: <#T##NSString#>,
 			mapUUID: <#T##NSString#>
 		)
-
+		
 		// Loading map
 		mapView.loadMap(with: mapDescription) { [weak self] (success) in
 			guard let `self` = self else { return }
@@ -84,14 +84,35 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: IndoorwayLocationManagerDelegate {
-	func indoorwayLocationManager(_ manager: IndoorwayLocationManager, didFailWithError error: Error) {
+
+	func locationManager(_ manager: IndoorwayLocationManager, didFailWithError error: Error) {
 		print("Location manager did fail with error \(error.localizedDescription)")
 	}
-	func indoorwayLocationManager(_ manager: IndoorwayLocationManager, didUpdateLocation location: IndoorwayLocation) {
+	func locationManager(_ manager: IndoorwayLocationManager, didUpdateLocation location: IndoorwayLocation) {
 		print("Location manager did update location: (latitude:\(location.latitude), longitude:\(location.longitude))")
 	}
-	func indoorwayLocationManager(_ manager: IndoorwayLocationManager, didUpdateHeading heading: IndoorwayHeading) {
+	func locationManager(_ manager: IndoorwayLocationManager, didUpdateHeading heading: IndoorwayHeading) {
 		print("Loation manager did update heading: \(heading)")
+	}
+	
+	func locationManager(_ manager: IndoorwayLocationManager, didEnter region: IndoorwayRegion) {
+		let enterData: IndoorwayRegionData? = region.notifications
+			.flatMap {
+				if case .enter(let data) = $0 { return data }
+				else { return nil }
+			}.first
+		guard let data = enterData else { return }
+		print("Entered: \(data.title) with description: \(data.description)")
+	}
+	
+	func locationManager(_ manager: IndoorwayLocationManager, didExit region: IndoorwayRegion) {
+		let exitData: IndoorwayRegionData? = region.notifications
+			.flatMap {
+				if case .exit(let data) = $0 { return data }
+				else { return nil }
+			}.first
+		guard let data = exitData else { return }
+		print("Exited: \(data.title) with description: \(data.description)")
 	}
 }
 

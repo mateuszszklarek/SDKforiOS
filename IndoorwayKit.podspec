@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'IndoorwayKit'
-  s.version           = '1.0.0'
+  s.version           = '1.1.0'
   s.cocoapods_version = '>= 1.0.0'
   s.summary           = 'IndoorwayKit - find yourself indoors.'
   s.homepage          = 'https://indoorway.com'
@@ -15,8 +15,7 @@ Pod::Spec.new do |s|
   }
 
   s.authors = {
-    'Michal Dabrowski' => 'michal.dabrowski@daftcode.pl',
-    'Robert Sobolewski' => 'robert.sobolewski@daftcode.pl'
+    'Indoorway' => 'contact@indoorway.com'
   }
   
   s.source = {
@@ -35,12 +34,11 @@ Pod::Spec.new do |s|
     'ENABLE_BITCODE' => 'NO'
   }
 
-  s.dependency 'SwiftyJSON'
-  s.dependency 'HanekeSwift'
-  s.dependency 'Alamofire', '~> 4.0'
-  s.dependency 'CryptoSwift'
-  s.dependency 'AWSSQS'
+  s.dependency 'SwiftyJSON',	'= 3.1.4'
+  s.dependency 'Kingfisher',	'= 3.4.0'
+  s.dependency 'Alamofire',		'= 4.3.0'
+  s.dependency 'CryptoSwift',	'= 0.6.7'
+  s.dependency 'AWSSQS',		'= 2.5.0'
   
   s.requires_arc = true
 end
-

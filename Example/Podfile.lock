@@ -1,43 +1,34 @@
 PODS:
-  - Alamofire (4.2.0)
-  - AWSCore (2.4.16)
-  - AWSSQS (2.4.16):
-    - AWSCore (= 2.4.16)
+  - Alamofire (4.3.0)
+  - AWSCore (2.5.0)
+  - AWSSQS (2.5.0):
+    - AWSCore (= 2.5.0)
   - CryptoSwift (0.6.7)
-  - HanekeSwift (0.10.1)
   - IndoorwayKit (1.0.0):
-    - Alamofire (~> 4.0)
-    - AWSSQS
-    - CryptoSwift
-    - HanekeSwift
-    - SwiftyJSON
-  - SwiftyJSON (3.1.3)
+    - Alamofire (= 4.3.0)
+    - AWSSQS (= 2.5.0)
+    - CryptoSwift (= 0.6.7)
+    - Kingfisher (= 3.3.4)
+    - SwiftyJSON (= 3.1.4)
+  - Kingfisher (3.3.4)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - IndoorwayKit (from `../`)
 
 EXTERNAL SOURCES:
-  HanekeSwift:
-    :branch: feature/swift-3
-    :git: https://github.com/Haneke/HanekeSwift.git
   IndoorwayKit:
     :path: ../
 
-CHECKOUT OPTIONS:
-  HanekeSwift:
-    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
-    :git: https://github.com/Haneke/HanekeSwift.git
-
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  AWSCore: 7c3c129991e6387bcbad7132bc3661e7135754db
-  AWSSQS: c13f3196915c83cd2b9453412e0db699d7d2ea5f
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AWSCore: e9839d27ceaa2db75934a9c418630ce63c23e347
+  AWSSQS: 93394a8dbac61edabc842aa0c185dccb0bada6b6
   CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
-  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
-  IndoorwayKit: fa0ba7a046328df7b6c19bc575cbda6100564640
-  SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
+  IndoorwayKit: e7c341e313b9af5464c450c92635470793ca64c9
+  Kingfisher: 35f289f015d26e81ea6c85048718c6205f3933c6
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 5786f25a78307916e59963478e94a7cbc76a5700
+PODFILE CHECKSUM: 043e463b64e84766e1b7537b82f3d6b8c6f78750
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

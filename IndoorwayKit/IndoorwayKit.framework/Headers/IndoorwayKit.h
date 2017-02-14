@@ -15,12 +15,10 @@ FOUNDATION_EXPORT double IndoorwayKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char IndoorwayKitVersionString[];
 
 #import <IndoorwayKit/IPSConstants.h>
-#import <IndoorwayKit/IPSCoreNode.h>
-#import <IndoorwayKit/IPSCorePath.h>
 #import <IndoorwayKit/IPSICoreService.h>
 #import <IndoorwayKit/IPSIFingerprint.h>
 #import <IndoorwayKit/IPSILatlong.h>
 #import <IndoorwayKit/IPSILatlongUtils.h>
 #import <IndoorwayKit/IPSIMeasurement.h>
 #import <IndoorwayKit/IPSIPosition.h>
-
+#import <IndoorwayKit/IPSIGraphPosition.h>
