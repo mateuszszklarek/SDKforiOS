@@ -3,6 +3,7 @@
 #### 1.x Releases
 
 - `1.1.x` Releases - [1.1.0](#110)
+- `1.2.x` Releases - [1.2.0](#120)
 
 ---
 
@@ -35,3 +36,17 @@
 	- type of completion handler result from get POIs method changed
 
 ---
+
+## `1.2.0`
+
+#### Added
+
+* Background location updates
+
+#### Updated
+
+* Map view renderer is way much faster
+* Map view annotations displaying enhancements
+	- Displaying annotation views by priority when zooming
+	- Reduced overlaping
+* Minor internal improvements
