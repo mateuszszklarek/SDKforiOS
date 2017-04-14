@@ -3,7 +3,7 @@
 #### 1.x Releases
 
 - `1.1.x` Releases - [1.1.0](#110)
-- `1.2.x` Releases - [1.2.0](#120)
+- `1.2.x` Releases - [1.2.0](#120), [1.2.1](#121)
 
 ---
 
@@ -50,3 +50,7 @@
 	- Displaying annotation views by priority when zooming
 	- Reduced overlaping
 * Minor internal improvements
+
+## `1.2.1`
+
+* Fixed bug that occurs in specific devices.

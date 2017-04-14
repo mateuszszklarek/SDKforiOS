@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'IndoorwayKit'
-  s.version           = '1.2.0'
+  s.version           = '1.2.1'
   s.cocoapods_version = '>= 1.0.0'
   s.summary           = 'IndoorwayKit - find yourself indoors.'
   s.homepage          = 'https://indoorway.com'
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   s.dependency 'Kingfisher',	'= 3.6.2'
   s.dependency 'Alamofire',		'= 4.4.0'
   s.dependency 'CryptoSwift',	'= 0.6.8'
-  s.dependency 'AWSSQS',		'= 2.5.3'
+  s.dependency 'AWSSQS',		  '= 2.5.3'
   
   s.requires_arc = true
 end
