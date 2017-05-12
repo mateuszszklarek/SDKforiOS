@@ -54,3 +54,21 @@
 ## `1.2.1`
 
 * Fixed bug that occurs in specific devices.
+
+---
+
+## `1.3.0`
+
+#### Added
+
+* Zoom map view to specific location
+* Center map range defined by user location
+* Possibility to rotate map using user heading
+* Access to loaded map building and map name's
+* QR code scanner view to improve sharing API key with co-workers
+* Possibility to fetch visitors associated with your API key that allowed to share their location between other users
+* Possibility to fetch last location update of visitors associated with your API key that allowed to share their location between other users
+
+#### Improved
+
+* New fields in visitor setup

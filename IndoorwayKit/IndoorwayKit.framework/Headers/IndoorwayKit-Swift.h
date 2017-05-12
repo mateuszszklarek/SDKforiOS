@@ -252,13 +252,17 @@ SWIFT_CLASS("_TtC12IndoorwayKit22IndoorwayConfiguration")
 /// Should be called every time the app launches and before obtaining first localization.
 /// \param name The name of the visitor. Pass empty string if not applicable
 ///
+/// \param email The email of the visitor. Pass empty string if not applicable
+///
 /// \param age The age of the visitor. Pass negative value if not applicable
 ///
 /// \param sex The sex of the visitor
 ///
 /// \param group The group of the visitor. Pass empty string if not applicable
 ///
-+ (void)setupVisitorWithName:(NSString * _Nonnull)name age:(NSInteger)age sex:(enum IndoorwayVisitorSex)sex group:(NSString * _Nonnull)group;
+/// \param shareLocation If set to <code>true</code>, location of the visitor can be shared with other application users using the same API key
+///
++ (void)setupVisitorWithName:(NSString * _Nonnull)name email:(NSString * _Nonnull)email age:(NSInteger)age sex:(enum IndoorwayVisitorSex)sex group:(NSString * _Nonnull)group shareLocation:(BOOL)shareLocation;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -271,6 +275,10 @@ typedef SWIFT_ENUM(NSInteger, IndoorwayErrorCode) {
   IndoorwayErrorCodeMapManager = 77703,
   IndoorwayErrorCodePointsOfInterestTypesManager = 77704,
   IndoorwayErrorCodeLocationRangingManager = 77705,
+  IndoorwayErrorCodeCameraNotAvailable = 77706,
+  IndoorwayErrorCodeVisitorsManager = 77707,
+  IndoorwayErrorCodeVisitorsLocationsManager = 77708,
+  IndoorwayErrorCodeLocationsManager = 77709,
   IndoorwayErrorCodeUserNotAuthorized = 77800,
 };
 
@@ -464,6 +472,23 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayMapView")
 @property (nonatomic, readonly, copy) NSArray<IndoorwayObjectInfo *> * _Nonnull indoorObjects;
 /// The annotation object representing user’s last location
 @property (nonatomic, readonly, strong) IndoorwayUserLocation * _Nullable userLocation;
+/// If set to <code>true</code>, automatically centers and zooms at the area
+/// defined by the user location
+@property (nonatomic) BOOL centerAtUserPosition;
+/// Zooms to a specific area calculated from the location and the zoom scale
+/// \param location The location defining center of the area
+///
+/// \param scale The zoom scale to be applied
+///
+/// \param animated If set to<code>true</code>, zoom will be animated. Otherwise it will be immediate
+///
+- (void)zoomTo:(IndoorwayLocation * _Nonnull)location withScale:(float)scale animated:(BOOL)animated;
+/// If set to <code>true</code>, the map rotates according to the user’s heading
+@property (nonatomic) BOOL rotateWithUserHeading;
+/// The loaded building namef
+@property (nonatomic, copy) NSString * _Nullable loadedBuildingName;
+/// The loaded map name
+@property (nonatomic, copy) NSString * _Nullable loadedMapName;
 /// Method lazily loads and displays map associated with description.
 /// After first load map will be cached.
 /// \param description The description of map to be displayed
@@ -731,6 +756,26 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayPOIType")
 
 
 @interface IndoorwayPOIType (SWIFT_EXTENSION(IndoorwayKit))
+@end
+
+@class UIColor;
+
+/// QR code scanner view
+SWIFT_CLASS("_TtC12IndoorwayKit26IndoorwayQRCodeScannerView")
+@interface IndoorwayQRCodeScannerView : UIView
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Method prepares and starts the QR code scanner
+/// \param completion The completion handler that can contain error if preparation fails
+///
+- (void)startWithCompletion:(SWIFT_NOESCAPE void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Method stops QR code scanner
+- (void)stop;
+/// The border color of the QR code detection frame
+@property (nonatomic, strong) UIColor * _Nonnull codeDetectionFrameViewBorderColor;
+/// The border width of the QR code detection frame
+@property (nonatomic) CGFloat codeDetectionFrameViewBorderWidth;
+- (void)layoutSubviews;
 @end
 
 

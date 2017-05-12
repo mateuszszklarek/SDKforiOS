@@ -28,8 +28,6 @@ If you are using Objective-C:
 
 - Xcode 7.3.1+
 
-Location module requires Bluetoooth turned on to obtain location data.
-
 ## Installation
 
 ### CocoaPods
@@ -50,7 +48,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'IndoorwayKit', '~> 1.2.1'
+    pod 'IndoorwayKit', '~> 1.3.0'
 end
 ```
 

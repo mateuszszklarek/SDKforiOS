@@ -35,10 +35,10 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'SwiftyJSON',	'= 3.1.4'
-  s.dependency 'Kingfisher',	'= 3.6.2'
+  s.dependency 'Kingfisher',	'= 3.8.0'
   s.dependency 'Alamofire',		'= 4.4.0'
-  s.dependency 'CryptoSwift',	'= 0.6.8'
-  s.dependency 'AWSSQS',		  '= 2.5.3'
+  s.dependency 'CryptoSwift',	'= 0.6.9'
+  s.dependency 'AWSSQS',		  '= 2.5.6'
   
   s.requires_arc = true
 end

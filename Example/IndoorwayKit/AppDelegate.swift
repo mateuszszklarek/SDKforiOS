@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		IndoorwayConfiguration.configure(withApiKey: <#T##String#>)
-		IndoorwayConfiguration.setupVisitor(withName: <#T##String#>, age: <#T##Int#>, sex: <#T##IndoorwayVisitorSex#>, group: <#T##String#>)
+		IndoorwayConfiguration.setupVisitor(withName: <#T##String#>, email: <#String#>, age: <#T##Int#>, sex: <#T##IndoorwayVisitorSex#>, group: <#T##String#>, shareLocation: <#Bool#>)
 		return true
 	}
 }

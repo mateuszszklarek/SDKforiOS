@@ -47,4 +47,6 @@
 
 - (nullable IPSIPosition *)updateStep:(double)distanceMade;
 
+- (nonnull NSString *)getVersion;
+
 @end
