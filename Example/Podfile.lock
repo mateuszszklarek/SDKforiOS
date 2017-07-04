@@ -1,16 +1,16 @@
 PODS:
-  - Alamofire (4.3.0)
-  - AWSCore (2.5.0)
-  - AWSSQS (2.5.0):
-    - AWSCore (= 2.5.0)
-  - CryptoSwift (0.6.7)
-  - IndoorwayKit (1.0.0):
-    - Alamofire (= 4.3.0)
-    - AWSSQS (= 2.5.0)
-    - CryptoSwift (= 0.6.7)
-    - Kingfisher (= 3.3.4)
+  - Alamofire (4.4.0)
+  - AWSCore (2.5.6)
+  - AWSSQS (2.5.6):
+    - AWSCore (= 2.5.6)
+  - CryptoSwift (0.6.9)
+  - IndoorwayKit (1.3.0):
+    - Alamofire (= 4.4.0)
+    - AWSSQS (= 2.5.6)
+    - CryptoSwift (= 0.6.9)
+    - Kingfisher (= 3.8.0)
     - SwiftyJSON (= 3.1.4)
-  - Kingfisher (3.3.4)
+  - Kingfisher (3.8.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -21,14 +21,14 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
-  AWSCore: e9839d27ceaa2db75934a9c418630ce63c23e347
-  AWSSQS: 93394a8dbac61edabc842aa0c185dccb0bada6b6
-  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
-  IndoorwayKit: e7c341e313b9af5464c450c92635470793ca64c9
-  Kingfisher: 35f289f015d26e81ea6c85048718c6205f3933c6
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AWSCore: 47109d026cdbc1272624caa73114fbdd2ba3ad66
+  AWSSQS: 6cfaf17e5c891f8950b8442674b80d1702d9fa99
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
+  IndoorwayKit: fe414b938f1ff7808c9a9242386e2de9c6c39662
+  Kingfisher: 7b8a055fc5c2afc61407d1a499e4e0981b1a6ac4
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
 PODFILE CHECKSUM: 043e463b64e84766e1b7537b82f3d6b8c6f78750
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
