@@ -3,7 +3,7 @@
 //  IndoorwayKit
 //
 //  Created by Robert Sobolewski on 19.07.2016.
-//  Copyright © 2016 Robert Sobolewski. All rights reserved.
+//  Copyright © 2016 Indoorway. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

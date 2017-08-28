@@ -29,4 +29,8 @@
 
 - (void)setGraphPosition:(nullable IPSIGraphPosition *)graphPosition;
 
+- (void)addMeasurement:(nullable IPSIMeasurement *)measurement;
+
+- (nonnull NSString *)asBinary;
+
 @end

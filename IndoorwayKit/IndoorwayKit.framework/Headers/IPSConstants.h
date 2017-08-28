@@ -10,4 +10,3 @@
 @end
 
 extern int32_t const IPSConstantsMINIMUMSIGNALSNUMBER;
-extern double const IPSConstantsSTEPLENGTHDEFAULT;

@@ -88,10 +88,12 @@ extension ViewController: IndoorwayLocationManagerDelegate {
 	func locationManager(_ manager: IndoorwayLocationManager, didFailWithError error: Error) {
 		print("Location manager did fail with error \(error.localizedDescription)")
 	}
-	func locationManager(_ manager: IndoorwayLocationManager, didUpdateLocation location: IndoorwayLocation) {
+	
+    func locationManager(_ manager: IndoorwayLocationManager, didUpdateLocation location: IndoorwayLocation) {
 		print("Location manager did update location: (latitude:\(location.latitude), longitude:\(location.longitude))")
 	}
-	func locationManager(_ manager: IndoorwayLocationManager, didUpdateHeading heading: IndoorwayHeading) {
+	
+    func locationManager(_ manager: IndoorwayLocationManager, didUpdateHeading heading: IndoorwayHeading) {
 		print("Loation manager did update heading: \(heading)")
 	}
 	
@@ -119,25 +121,29 @@ extension ViewController: IndoorwayLocationManagerDelegate {
 extension ViewController: IndoorwayMapViewDelegate {
 	
 	// Map loading
-	func mapViewDidFinishLoadingMap(_ mapView: IndoorwayMapView) {
+	
+    func mapViewDidFinishLoadingMap(_ mapView: IndoorwayMapView) {
 		print("Map view did finish loading")
 	}
+    
 	func mapViewDidFailLoadingMap(_ mapView: IndoorwayMapView, withError error: Error) {
 		print("Map view did fail loading map with error: \(error.localizedDescription)")
 	}
 	
 	// Location
-	func mapView(_ mapView: IndoorwayMapView, didUpdate userLocation: IndoorwayUserLocation) {
+	
+    func mapView(_ mapView: IndoorwayMapView, didUpdate userLocation: IndoorwayUserLocation) {
 		print("Map view did update user location: (latitude:\(userLocation.coordinate.latitude), longitude:\(userLocation.coordinate.longitude)")
 	}
 	
 	// Actions
+    
 	func mapView(_ mapView: IndoorwayMapView, didSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) {
 		print("User did select indoor object with identifier: \(indoorObjectInfo.objectId)")
 	}
+    
 	func mapView(_ mapView: IndoorwayMapView, didTapLocation location: IndoorwayLatLon) {
 		print("User did tap location: \(location.latitude) \(location.longitude)")
 	}
-	
-	// And many other methods
+
 }

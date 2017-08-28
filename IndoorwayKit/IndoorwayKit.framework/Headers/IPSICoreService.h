@@ -4,6 +4,7 @@
 #import <Foundation/Foundation.h>
 @class IPSICoreService;
 @class IPSIFingerprint;
+@class IPSIMeasurement;
 @class IPSIPosition;
 
 
@@ -11,22 +12,23 @@
 
 + (nullable IPSICoreService *)createCoreService:(nonnull NSArray *)data;
 
+/**static create_kalman_core_service(): i_core_service; */
 - (nullable IPSIPosition *)updateFingerprint:(nullable IPSIFingerprint *)fingerprint;
 
 - (nullable IPSIPosition *)updateMotion:(float)accX
                                    accY:(float)accY
                                    accZ:(float)accZ
-                                     dt:(float)dt;
+                              timestamp:(int64_t)timestamp;
 
 - (void)onGyroUpdate:(float)gyroX
                gyroY:(float)gyroY
                gyroZ:(float)gyroZ
-                  dt:(float)dt;
+           timestamp:(int64_t)timestamp;
 
 - (void)onMagnetometerUpdate:(float)magX
                         magY:(float)magY
                         magZ:(float)magZ
-                          dt:(float)dt;
+                   timestamp:(int64_t)timestamp;
 
 - (nullable IPSIPosition *)getAbsolutePosition;
 
@@ -37,15 +39,22 @@
 - (BOOL)wasStepMade:(float)accX
                accY:(float)accY
                accZ:(float)accZ
-                 dt:(float)dt;
+          timestamp:(int64_t)timestamp;
 
 - (void)updateYaw:(float)yaw;
 
 - (void)updateDirection:(float)direction;
 
+- (void)updateQuaternion:(float)x
+                       y:(float)y
+                       z:(float)z
+                       w:(float)w;
+
 - (float)getDirection;
 
-- (nullable IPSIPosition *)updateStep:(double)distanceMade;
+- (nullable IPSIPosition *)updateStep;
+
+- (nullable IPSIPosition *)updateMeasurement:(nullable IPSIMeasurement *)measurement;
 
 - (nonnull NSString *)getVersion;
 

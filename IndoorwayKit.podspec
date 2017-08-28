@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'IndoorwayKit'
-  s.version           = '1.4.0'
+  s.version           = '1.4.1'
   s.cocoapods_version = '>= 1.0.0'
   s.summary           = 'IndoorwayKit - find yourself indoors.'
   s.homepage          = 'https://indoorway.com'
@@ -34,11 +34,11 @@ Pod::Spec.new do |s|
     'ENABLE_BITCODE' => 'NO'
   }
 
-  s.dependency 'SwiftyJSON',	'= 3.1.4'
-  s.dependency 'Kingfisher',	'= 3.8.0'
-  s.dependency 'Alamofire',		'= 4.4.0'
-  s.dependency 'CryptoSwift',	'= 0.6.9'
-  s.dependency 'AWSSQS',		  '= 2.5.6'
+  s.dependency 'SwiftyJSON',    '= 3.1.4'
+  s.dependency 'Kingfisher',    '~> 3.10.0'
+  s.dependency 'Alamofire',     '~> 4.5.0'
+  s.dependency 'CryptoSwift',   '= 0.6.9'
+  s.dependency 'AWSSQS',        '~> 2.5.9'
   
   s.requires_arc = true
 end

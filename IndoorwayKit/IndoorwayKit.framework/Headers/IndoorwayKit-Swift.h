@@ -153,6 +153,10 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @end
 
 
+@interface CLLocationManager (SWIFT_EXTENSION(IndoorwayKit))
+@end
+
+
 @interface IPSIPosition (SWIFT_EXTENSION(IndoorwayKit))
 @end
 
@@ -237,7 +241,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit29IndoorwayCircleAnnotationView")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
-enum IndoorwayVisitorSex : NSInteger;
+enum IndoorwayVisitorSex : NSUInteger;
 
 /// The Indoorway configuration class
 SWIFT_CLASS("_TtC12IndoorwayKit22IndoorwayConfiguration")
@@ -260,10 +264,12 @@ SWIFT_CLASS("_TtC12IndoorwayKit22IndoorwayConfiguration")
 ///
 /// \param group The group of the visitor. Pass empty string if not applicable
 ///
-/// \param shareLocation If set to <code>true</code>, location of the visitor can be shared with other application users using the same API key
-///
-+ (void)setupVisitorWithName:(NSString * _Nonnull)name email:(NSString * _Nonnull)email age:(NSInteger)age sex:(enum IndoorwayVisitorSex)sex group:(NSString * _Nonnull)group shareLocation:(BOOL)shareLocation;
++ (void)setupVisitorWithName:(NSString * _Nonnull)name email:(NSString * _Nonnull)email age:(NSUInteger)age sex:(enum IndoorwayVisitorSex)sex group:(NSString * _Nonnull)group shareLocation:(BOOL)shareLocation SWIFT_DEPRECATED;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface IndoorwayConfiguration (SWIFT_EXTENSION(IndoorwayKit))
 @end
 
 /// Indoorway error codes
@@ -279,6 +285,8 @@ typedef SWIFT_ENUM(NSInteger, IndoorwayErrorCode) {
   IndoorwayErrorCodeVisitorsManager = 77707,
   IndoorwayErrorCodeVisitorsLocationsManager = 77708,
   IndoorwayErrorCodeLocationsManager = 77709,
+  IndoorwayErrorCodeLoginManager = 77710,
+  IndoorwayErrorCodeNoRadioMap = 77711,
   IndoorwayErrorCodeUserNotAuthorized = 77800,
 };
 
@@ -449,8 +457,20 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit33IndoorwayMapRendererConfiguration_")
 - (CGFloat)textSize SWIFT_WARN_UNUSED_RESULT;
 /// Fill color for selected object
 @property (nonatomic, readonly) CGColorRef _Nullable selectedObjectFillColor;
+/// Custom fill color for selected object. Has higher priority than <code>selectedObjectFillColor</code>.
+/// If the method returns nil for an object, value returned by<code>selectedObjectFillColor</code> will be used.
+/// \param object The object for color specification
+///
+///
+/// returns:
+/// Fill color for selected object
+- (CGColorRef _Nullable)selectedObjectFillColorForObject:(IndoorwayObjectInfo * _Nullable)object SWIFT_WARN_UNUSED_RESULT;
 /// Stroke color for selected object
 @property (nonatomic, readonly) CGColorRef _Nullable selectedObjectStrokeColor;
+/// Fill color for user’s location. Works only with default annotation
+@property (nonatomic, readonly) CGColorRef _Nullable usersLocationFillColor;
+/// Stroke color of user’s location. Works only with default annotation
+@property (nonatomic, readonly) CGColorRef _Nullable usersLocationStrokeColor;
 @end
 
 @protocol IndoorwayMapViewDelegate;
@@ -792,7 +812,7 @@ SWIFT_CLASS("_TtC12IndoorwayKit21IndoorwayUserLocation")
 @end
 
 /// Indoorway visitor sex
-typedef SWIFT_ENUM(NSInteger, IndoorwayVisitorSex) {
+typedef SWIFT_ENUM(NSUInteger, IndoorwayVisitorSex) {
 /// Undefined
   IndoorwayVisitorSexUndefined = 0,
 /// Male
@@ -800,6 +820,10 @@ typedef SWIFT_ENUM(NSInteger, IndoorwayVisitorSex) {
 /// Female
   IndoorwayVisitorSexFemale = 2,
 };
+
+
+@interface NSError (SWIFT_EXTENSION(IndoorwayKit))
+@end
 
 
 @interface UIBezierPath (SWIFT_EXTENSION(IndoorwayKit))
