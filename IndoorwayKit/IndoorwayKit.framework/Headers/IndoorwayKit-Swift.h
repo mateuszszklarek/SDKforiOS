@@ -505,7 +505,9 @@ SWIFT_CLASS("_TtC12IndoorwayKit16IndoorwayMapView")
 - (void)zoomTo:(IndoorwayLocation * _Nonnull)location withScale:(float)scale animated:(BOOL)animated;
 /// If set to <code>true</code>, the map rotates according to the user’s heading
 @property (nonatomic) BOOL rotateWithUserHeading;
-/// The loaded building namef
+/// Description of Indoorway map loaded with <code>loadMap</code>
+@property (nonatomic, readonly, strong) IndoorwayMapDescription * _Nullable loadedMap;
+/// The loaded building name
 @property (nonatomic, copy) NSString * _Nullable loadedBuildingName;
 /// The loaded map name
 @property (nonatomic, copy) NSString * _Nullable loadedMapName;
@@ -659,6 +661,12 @@ SWIFT_PROTOCOL("_TtP12IndoorwayKit24IndoorwayMapViewDelegate_")
 /// \param error The error containing a reason that determining user location failed
 ///
 - (void)mapView:(IndoorwayMapView * _Nonnull)mapView didFailToLocateUserWithError:(NSError * _Nonnull)error;
+/// Method tells the delegate that the mapView recovered after a previous error
+/// \param mapView The map view which determines user location
+///
+/// \param error The error from which we recovered
+///
+- (void)mapView:(IndoorwayMapView * _Nonnull)mapView didRecoverAfterError:(NSError * _Nonnull)error;
 /// Method determines that map view should select Indoorway object
 /// \param mapView The map view that should or not select object
 ///
