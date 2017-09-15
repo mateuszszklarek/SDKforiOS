@@ -48,7 +48,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'IndoorwayKit', '~> 1.4.4'
+    pod 'IndoorwayKit', '~> 1.4.5'
 end
 ```
 
@@ -67,4 +67,4 @@ IndoorwayKit is available under the custom license. See the LICENSE file for mor
 
 ## Documentation
 
-You can read full documentation on [Indoorway Developer Guide](https://docs.indoorway.com/ios/requirements/index.html).
+You can read full documentation on [Indoorway Developer Guide](https://help.indoorway.com/v1.4.1/).
