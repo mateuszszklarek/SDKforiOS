@@ -7,4 +7,5 @@ framework module IndoorwayKit {
 
 module IndoorwayKit.Swift {
     header "IndoorwayKit-Swift.h"
+    requires objc
 }
