@@ -13,8 +13,6 @@
 + (nullable IPSICoreService *)createCoreService:(nonnull NSArray *)data;
 
 /**static create_kalman_core_service(): i_core_service; */
-- (nullable IPSIPosition *)updateFingerprint:(nullable IPSIFingerprint *)fingerprint;
-
 - (nullable IPSIPosition *)updateMotion:(float)accX
                                    accY:(float)accY
                                    accZ:(float)accZ

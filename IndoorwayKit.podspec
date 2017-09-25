@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'IndoorwayKit'
-  s.version           = '2.0.0-beta1'
+  s.version           = '2.0.0-beta2'
   s.cocoapods_version = '>= 1.0.0'
   s.summary           = 'IndoorwayKit - find yourself indoors.'
   s.homepage          = 'https://indoorway.com'
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   }
 
   s.platform              = :ios
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
 
   s.ios.vendored_frameworks = 'IndoorwayKit/IndoorwayKit.framework'
   s.frameworks              = 'CoreMotion', 'CoreBluetooth', 'Security', 'UIKit', 'CoreGraphics', 'CoreLocation'
@@ -39,10 +39,5 @@ Pod::Spec.new do |s|
   s.dependency 'AWSSQS',        '~> 2.6.1'
   
   s.requires_arc = true
-  
-  s.xcconfig = { 
-    'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/IndoorwayKit/IndoorwayKit/IndoorwayKit.framework/CommonCrypto"'
-  }
-  s.preserve_paths = 'IndoorwayKit/IndoorwayKit.framework/CommonCrypto/module.modulemap'
 
 end
