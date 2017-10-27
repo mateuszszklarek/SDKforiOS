@@ -3,7 +3,7 @@ PODS:
   - AWSCore (2.6.1)
   - AWSSQS (2.6.1):
     - AWSCore (= 2.6.1)
-  - IndoorwayKit (2.0.0-beta5):
+  - IndoorwayKit (2.0.0-beta6):
     - Alamofire (~> 4.5.1)
     - AWSSQS (~> 2.6.1)
     - SwiftyJSON (~> 3.1.4)
@@ -20,7 +20,7 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AWSCore: e7d37fa0715def975acf1b0d75556576780088b8
   AWSSQS: 8e55f609a5be369ec5c7348285c75d91cae9f3fe
-  IndoorwayKit: c0c8a4c3d9425c3b77e7d0805d6ddd63877826e3
+  IndoorwayKit: 1d6488d5ddf1c7fb82104c39fc12a448d1d2846a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
 PODFILE CHECKSUM: 043e463b64e84766e1b7537b82f3d6b8c6f78750
