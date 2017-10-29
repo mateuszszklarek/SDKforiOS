@@ -28,6 +28,11 @@ If you are using Objective-C:
 
 - Xcode 7.3.1+
 
+## Versions
+In order to use `Swift 3.1` use CocoaPods version `1.4.x`
+
+In order to use `Swift 4.0` use CocoaPods version `2.0.0-betaX` (stable version comming soon)
+
 ## Installation
 
 ### CocoaPods
