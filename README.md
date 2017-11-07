@@ -52,7 +52,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'IndoorwayKit', '~> 2.0.0-beta7'
+    pod 'IndoorwayKit', '~> 2.0.0-beta8'
 end
 ```
 
