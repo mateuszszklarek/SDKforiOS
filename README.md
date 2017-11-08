@@ -21,16 +21,16 @@ IndoorwayKit framework is implemented in Swift and requires system version:
 
 If you are using Swift:
 
-- Xcode 8.1+
-- Swift 3.1+
+- Xcode 9.1+
+- Swift 4+
 
 If you are using Objective-C:
 
-- Xcode 7.3.1+
+- Use IndoorwayKit in version `1.4.x`
 
 ## Versions
-In order to use `Swift 3.0` use CocoaPods version `1.4.x`
-In order to use `Swift 4.0` use CocoaPods version `2.0.0`
+- In order to use `Swift 3.0` use Pod version `1.4.x`
+- In order to use `Swift 4.0` use Pod version `2.0.0`
 
 ## Installation
 
@@ -52,7 +52,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'IndoorwayKit', '~> 2.0.0-beta8'
+    pod 'IndoorwayKit', '~> 2.0.0'
 end
 ```
 
@@ -72,3 +72,5 @@ IndoorwayKit is available under the custom license. See the LICENSE file for mor
 ## Documentation
 
 You can read full documentation on [Indoorway Developer Guide](https://help.indoorway.com/v1.4.1/).
+
+Full list of SDK functions you may find on [IndoorwaySdk contract repository](https://github.com/indoorway/SDKcontract).

@@ -1,5 +1,8 @@
-use_frameworks!
+platform :ios, '10.0'
 
-target 'IndoorwayKit_Example' do
-  pod 'IndoorwayKit', :path => '../'
+target 'IndoorwayExample' do
+  use_frameworks!
+
+  pod 'IndoorwaySdk', :path => '../'
+
 end
