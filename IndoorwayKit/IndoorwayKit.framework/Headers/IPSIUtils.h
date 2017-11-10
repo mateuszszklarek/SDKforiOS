@@ -5,7 +5,7 @@
 @class IPSILatlong;
 
 
-@interface IPSILatlongUtils : NSObject
+@interface IPSIUtils : NSObject
 
 + (double)getDistanceInMeters:(nullable IPSILatlong *)locationOne
                   locationTwo:(nullable IPSILatlong *)locationTwo;
@@ -18,5 +18,11 @@
 + (nullable IPSILatlong *)updateCoordinates:(nullable IPSILatlong *)positionToUpdate
                                       shift:(double)shift
                                     bearing:(double)bearing;
+
++ (nonnull NSString *)calculateSHA256:(nonnull NSString *)data;
+
++ (nonnull NSString *)calculateSHA1:(nonnull NSString *)data;
+
++ (nonnull NSString *)calculateMD5:(nonnull NSString *)data;
 
 @end

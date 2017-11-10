@@ -29,9 +29,8 @@ If you are using Objective-C:
 - Xcode 7.3.1+
 
 ## Versions
-In order to use `Swift 3.1` use CocoaPods version `1.4.x`
-
-In order to use `Swift 4.0` use CocoaPods version `2.0.0-betaX` (stable version comming soon)
+In order to use `Swift 3.0` use CocoaPods version `1.4.x`
+In order to use `Swift 4.0` use CocoaPods version `2.0.0`
 
 ## Installation
 
@@ -53,7 +52,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'IndoorwayKit', '~> 1.4.5'
+    pod 'IndoorwayKit', '~> 2.0.0-beta8'
 end
 ```
 
