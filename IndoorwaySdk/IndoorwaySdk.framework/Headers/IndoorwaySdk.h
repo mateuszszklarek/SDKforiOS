@@ -17,6 +17,7 @@ FOUNDATION_EXPORT const unsigned char IndoorwayKitVersionString[];
 #import <IndoorwaySdk/IPSConstants.h>
 #import <IndoorwaySdk/IPSICoreService.h>
 #import <IndoorwaySdk/IPSIFingerprint.h>
+#import <IndoorwaySdk/IPSIFingerprintBuilder.h>
 #import <IndoorwaySdk/IPSILatlong.h>
 #import <IndoorwaySdk/IPSIMeasurement.h>
 #import <IndoorwaySdk/IPSIPosition.h>

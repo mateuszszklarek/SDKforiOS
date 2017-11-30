@@ -9,22 +9,17 @@
 
 + (nullable IPSIMeasurement *)createMeasurement;
 
-+ (nullable IPSIMeasurement *)createMeasurementWithParams:(nonnull NSString *)ssid
-                                                    bssid:(nonnull NSString *)bssid
++ (nullable IPSIMeasurement *)createMeasurementWithParams:(nonnull NSString *)hexId
                                                      rssi:(float)rssi
                                                 timestamp:(int64_t)timestamp;
 
-- (void)setBssid:(nonnull NSString *)bssid;
+- (void)setHexId:(nonnull NSString *)hexId;
 
-- (nonnull NSString *)getBssid;
+- (nonnull NSString *)getHexId;
 
 - (void)setRssi:(float)rssi;
 
 - (float)getRssi;
-
-- (void)setSsid:(nonnull NSString *)ssid;
-
-- (nonnull NSString *)getSsid;
 
 - (void)setTimestamp:(int64_t)timestamp;
 
