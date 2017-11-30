@@ -217,7 +217,7 @@ SWIFT_PROTOCOL("_TtP12IndoorwaySdk19IndoorwayAnnotation_")
 /// Class responsible for presenting annotations in a map view.
 /// The map view asks its delegate to provide corresponding annotation view.
 /// Annotation views can be recycled ad reused. This process is maintained by map view.
-SWIFT_CLASS("_TtC12IndoorwaySdk23IndoorwayAnnotationView")
+SWIFT_CLASS("_TtC12IndoorwaySdk23IndoorwayAnnotationView") SWIFT_DEPRECATED_MSG("Will be removed in 1.5.0")
 @interface IndoorwayAnnotationView : UIView
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
