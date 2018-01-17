@@ -1,4 +1,4 @@
-# IndoorwayKit
+# IndoorwaySdk
 
 [![Twitter](https://img.shields.io/badge/twitter-@Indoorway-blue.svg?style=flat)](http://twitter.com/indoorway)
 
@@ -15,7 +15,7 @@ Indoorway lets you find your way indoors. Check it out!
 
 ## Requirements
 
-IndoorwayKit framework is implemented in Swift and requires system version:
+IndoorwaySdk framework is implemented in Swift and requires system version:
 
 - iOS 10.0+
 
@@ -26,7 +26,7 @@ If you are using Swift:
 
 If you are using Objective-C:
 
-- Use IndoorwayKit in version `1.4.x`
+- Use IndoorwaySdk in version `1.4.x`
 
 ## Versions
 - In order to use `Swift 3.0` use Pod version `1.4.x`
@@ -36,14 +36,14 @@ If you are using Objective-C:
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. To build IndoorwayKit, CocoaPods in version 1.0.0+ is required. You can easily install it from Ruby gem by using the following bash command:
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. To build IndoorwaySdk, CocoaPods in version 1.0.0+ is required. You can easily install it from Ruby gem by using the following bash command:
 
 ```bash
 $ gem install cocoapods
 ```
 
 
-You can integrate IndoorwayKit to your Xcode project using CocoaPods `Podfile` like:
+You can integrate IndoorwaySdk to your Xcode project using CocoaPods `Podfile` like:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -67,7 +67,7 @@ Any suggestions or reports of technical issues are welcome! Contact us via email
 
 ## Licence
 
-IndoorwayKit is available under the custom license. See the LICENSE file for more info.
+IndoorwaySdk is available under the custom license. See the LICENSE file for more info.
 
 ## Documentation
 
