@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'IndoorwaySdk'
-  s.version           = '2.0.2'
+  s.version           = '2.0.3'
   s.cocoapods_version = '>= 1.0.0'
   s.summary           = 'IndoorwaySdk - find yourself indoors.'
   s.homepage          = 'https://indoorway.com'
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'SwiftyJSON',    '~> 3.1.4'
-  s.dependency 'Alamofire',     '~> 4.5.1'
+  s.dependency 'Alamofire',     '~> 4.7.0'
   s.dependency 'AWSSQS',        '~> 2.6.1'
 
   s.requires_arc = true
