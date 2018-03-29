@@ -8,6 +8,11 @@
 - `1.1.x` Releases - [1.1.0](#110)
 
 ---
+## `2.0.5`
+
+### Improved
+
+* Improved mechanism for log in and logout between multiple accounts
 
 ## `1.4.0`
 
