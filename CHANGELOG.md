@@ -8,6 +8,14 @@
 - `1.1.x` Releases - [1.1.0](#110)
 
 ---
+## `2.0.6`
+
+###
+
+### Changed
+
+* Bump Swift version to 4.1
+
 ## `2.0.5`
 
 ### Improved
