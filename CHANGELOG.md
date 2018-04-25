@@ -14,6 +14,15 @@
 
 ### Changed
 
+* Added possibility to set manually user's position
+
+---
+## `2.0.6`
+
+###
+
+### Changed
+
 * Bump Swift version to 4.1
 
 ## `2.0.5`
