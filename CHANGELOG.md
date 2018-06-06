@@ -8,7 +8,16 @@
 - `1.1.x` Releases - [1.1.0](#110)
 
 ---
-## `2.0.6`
+## `2.0.8`
+
+###
+
+### Changed
+
+* Fixed issue with listeners
+
+
+## `2.0.7`
 
 ###
 
