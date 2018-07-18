@@ -71,6 +71,6 @@ IndoorwaySdk is available under the custom license. See the LICENSE file for mor
 
 ## Documentation
 
-You can read full documentation on [Indoorway Developer Guide](https://help.indoorway.com/v1.4.1/).
+You can read full documentation on [Indoorway Developer Guide](https://help.indoorway.com/docs/ios-sdk-requirements).
 
 Full list of SDK functions you may find on [IndoorwaySdk contract repository](https://github.com/indoorway/SDKcontract).
