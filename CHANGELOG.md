@@ -8,6 +8,14 @@
 - `1.1.x` Releases - [1.1.0](#110)
 
 ---
+## `2.0.9`
+
+### Changed
+
+* Updated listeners behaviour
+* Added posibility to track navigation steps: call `getSteps()` on `IndoorwayMapView` while navigation is active
+* Added possibility to track POI taps. `IndoorwayMapView` has new methods: `didSelectPOIObject` and `didDeselectPOIObject`
+
 ## `2.0.8`
 
 ###
