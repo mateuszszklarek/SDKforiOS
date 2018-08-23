@@ -1,13 +1,12 @@
 # IndoorwayKit change log
 
-#### 1.x Releases
+## `2.0.10`
 
-- `1.4.x` Releases - [1.4.0](#140)
-- `1.3.x` Releases - [1.3.0](#130)
-- `1.2.x` Releases - [1.2.0](#120), [1.2.1](#121)
-- `1.1.x` Releases - [1.1.0](#110)
+### Changed
 
----
+* Updated navigation steps
+* added centerPoint property in `IndoorwayObjectInfo`
+
 ## `2.0.9`
 
 ### Changed
