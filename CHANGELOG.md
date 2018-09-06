@@ -1,5 +1,11 @@
 # IndoorwayKit change log
 
+## `2.0.11`
+
+### Fixed
+
+* Fixed issue with not accesible annotations
+
 ## `2.0.10`
 
 ### Changed
