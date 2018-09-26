@@ -21,8 +21,8 @@ IndoorwaySdk framework is implemented in Swift and requires system version:
 
 If you are using Swift:
 
-- Xcode 9.1+
-- Swift 4+
+- Xcode 10.0
+- Swift 4.2
 
 If you are using Objective-C:
 

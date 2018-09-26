@@ -1,5 +1,12 @@
 # IndoorwayKit change log
 
+## `2.0.12`
+
+### Changed
+
+* Changed Swift version to 4.2
+
+
 ## `2.0.11`
 
 ### Fixed
