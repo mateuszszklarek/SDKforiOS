@@ -1,5 +1,11 @@
 # IndoorwayKit change log
 
+## `2.0.13`
+
+### Added
+
+* Added visual representation for tapped POI
+
 ## `2.0.12`
 
 ### Changed
