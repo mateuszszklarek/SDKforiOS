@@ -1,5 +1,11 @@
 # IndoorwayKit change log
 
+## `2.0.14`
+
+### Changed
+
+* Improved POI selection
+
 ## `2.0.13`
 
 ### Added
@@ -11,7 +17,6 @@
 ### Changed
 
 * Changed Swift version to 4.2
-
 
 ## `2.0.11`
 

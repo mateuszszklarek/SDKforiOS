@@ -377,6 +377,7 @@ SWIFT_CLASS("_TtC12IndoorwaySdk16IndoorwayMapView")
 
 
 @class IndoorwayUserLocation;
+@class IndoorwayPOI;
 
 /// Indoorway map view delegate
 SWIFT_PROTOCOL("_TtP12IndoorwaySdk24IndoorwayMapViewDelegate_")
@@ -434,15 +435,15 @@ SWIFT_PROTOCOL("_TtP12IndoorwaySdk24IndoorwayMapViewDelegate_")
 /// Method called when Indoorway POI object did select
 /// \param mapView The map view that contains selected Indoorway object
 ///
-/// \param indoorObjectInfo The selected  POI object
+/// \param indoorwayPOI The selected  POI object
 ///
-- (void)mapView:(IndoorwayMapView * _Nonnull)mapView didSelectPOIObject:(IndoorwayAnnotationView * _Nonnull)view;
+- (void)mapView:(IndoorwayMapView * _Nonnull)mapView didSelectPOIObject:(IndoorwayPOI * _Nonnull)indoorwayPOI;
 /// Method called when Indoorway POI object did deselect
 /// \param mapView The map view that contains deselected Indoorway object
 ///
-/// \param indoorObjectInfo The deselected POI object
+/// \param indoorwayPOI The deselected POI object
 ///
-- (void)mapView:(IndoorwayMapView * _Nonnull)mapView didDeselectPOIObject:(IndoorwayAnnotationView * _Nonnull)view;
+- (void)mapView:(IndoorwayMapView * _Nonnull)mapView didDeselectPOIObject:(IndoorwayPOI * _Nonnull)indoorwayPOI;
 /// Method returns the view associated with the specified annotation object
 /// Discussion:
 /// Rather than creating new view each time the method is called, it should call <code>dequeueReusableAnnotationViewWithIdentifier(_ identifier:)</code> on the <code>IndoorwayMapView</code> instance to obtain dequeued view.
@@ -511,6 +512,16 @@ typedef SWIFT_ENUM(NSInteger, IndoorwayObjectType, closed) {
 /// Unknown
   IndoorwayObjectTypeUnknown = 12,
 };
+
+
+SWIFT_CLASS("_TtC12IndoorwaySdk12IndoorwayPOI")
+@interface IndoorwayPOI : NSObject <IndoorwayAnnotation>
+@property (nonatomic, readonly, strong) IndoorwayLatLon * _Nonnull coordinate;
+@property (nonatomic, readonly, copy) NSString * _Nullable title;
+@property (nonatomic, copy) NSString * _Nullable subtitle;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
 
 
 /// QR code scanner view

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'IndoorwaySdk'
-  s.version           = '2.0.13'
+  s.version           = '2.0.14'
   s.cocoapods_version = '>= 1.0.0'
   s.summary           = 'IndoorwaySdk - find yourself indoors.'
   s.homepage          = 'https://indoorway.com'
