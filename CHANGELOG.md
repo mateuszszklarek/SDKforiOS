@@ -1,5 +1,11 @@
 # IndoorwayKit change log
 
+## `2.0.15`
+
+### Added
+
+* Added ability to decide which indoorwayPOI we should select
+
 ## `2.0.14`
 
 ### Changed

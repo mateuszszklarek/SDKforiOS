@@ -376,6 +376,8 @@ SWIFT_CLASS("_TtC12IndoorwaySdk16IndoorwayMapView")
 
 
 
+
+
 @class IndoorwayUserLocation;
 @class IndoorwayPOI;
 
@@ -432,6 +434,15 @@ SWIFT_PROTOCOL("_TtP12IndoorwaySdk24IndoorwayMapViewDelegate_")
 /// \param indoorObjectInfo The deselected Indoorway object
 ///
 - (void)mapView:(IndoorwayMapView * _Nonnull)mapView didDeselectIndoorObject:(IndoorwayObjectInfo * _Nonnull)indoorObjectInfo;
+/// Method determines that map view should select IndoorwayPOI object
+/// \param mapView The map view that should or not select object
+///
+/// \param indoorwayPOI The indoorwayPOI that should or not be selected
+///
+///
+/// returns:
+/// returns true if indoorwayPOI should be selected
+- (BOOL)mapView:(IndoorwayMapView * _Nonnull)mapView shouldSelectIndoorwayPOI:(IndoorwayPOI * _Nonnull)indoorwayPOI SWIFT_WARN_UNUSED_RESULT;
 /// Method called when Indoorway POI object did select
 /// \param mapView The map view that contains selected Indoorway object
 ///
