@@ -61,6 +61,18 @@ And then, run bash command in your project's folder:
 ```bash
 $ pod install
 ```
+
+### Carthage
+
+To install using [Carthage](https://github.com/Carthage/Carthage) simply add below lines to your Cartfile
+
+```
+binary "https://raw.githubusercontent.com/indoorway/SDKforiOS/master/IndoorwaySdk.json" ~> 2.0.15
+github "Alamofire/Alamofire" ~> 4.7.1
+github "aws/aws-sdk-ios" ~> 2.6.1
+github "SwiftyJSON/SwiftyJSON" ~> 4.0.0
+```
+
 ## Support
 
 Any suggestions or reports of technical issues are welcome! Contact us via email contact@indoorway.com.
